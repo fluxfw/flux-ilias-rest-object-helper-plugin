@@ -1,0 +1,5 @@
+*
+!classes
+!classes/**
+!autoload.php
+!plugin.php

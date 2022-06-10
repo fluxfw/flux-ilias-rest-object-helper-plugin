@@ -1,0 +1,11 @@
+*
+!classes
+!classes/**
+!.dockerignore
+!.gitignore
+!.gitlab-ci.yml
+!autoload.php
+!Dockerfile
+!metadata.json
+!plugin.php
+!README.md
