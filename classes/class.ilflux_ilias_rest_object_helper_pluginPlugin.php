@@ -2,24 +2,52 @@
 
 use FluxIliasRestApi\Libs\FluxIliasApi\Adapter\Api\IliasApi;
 use FluxIliasRestApi\Libs\FluxIliasApi\Channel\Object\LegacyDefaultInternalObjectType;
+use FluxIliasRestApi\Libs\FluxIliasApi\Channel\ObjectConfig\LegacyObjectConfigKey;
 
 class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlugin
 {
 
-    private IliasApi $ilias_api;
+    private static ?IliasApi $ilias_api = null;
 
 
     public function __construct(...$args)
     {
         parent::__construct(...$args);
 
-        $this->initPlugin();
+        static::initPlugin();
     }
 
 
-    public static function _getIcon(/*string*/ $a_type, /*string*/ $a_size) : string
+    public static function _getIcon(/*string*/ $a_type, /*string*/ $a_size, /*?int*/ $a_obj_id = null) : string
     {
+        if ($a_obj_id !== null) {
+            static::initPlugin();
+
+            $web_proxy_map_key = static::$ilias_api->getObjectConfig(
+                $a_obj_id,
+                LegacyObjectConfigKey::WEB_PROXY_MAP_KEY()
+            );
+            if ($web_proxy_map_key !== null) {
+                $web_proxy_map = static::$ilias_api->getFluxIliasRestObjectWebProxyMapByKey(
+                    $web_proxy_map_key
+                );
+                if ($web_proxy_map !== null && $web_proxy_map->icon_url !== null) {
+                    return $web_proxy_map->icon_url;
+                }
+            }
+        }
+
         return ilUtil::getImagePath("icon_webr.svg");
+    }
+
+
+    private static function initPlugin() : void
+    {
+        if (static::$ilias_api === null) {
+            require_once __DIR__ . "/../autoload.php";
+
+            static::$ilias_api = IliasApi::new();
+        }
     }
 
 
@@ -31,7 +59,7 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
 
     public function deleteObjectConfig(int $id) : void
     {
-        $this->ilias_api->deleteObjectConfig(
+        static::$ilias_api->deleteObjectConfig(
             $id
         );
     }
@@ -39,7 +67,7 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
 
     public function getFluxIliasRestObjectConfigLink(int $ref_id) : string
     {
-        return $this->ilias_api->getFluxIliasRestObjectConfigLink(
+        return static::$ilias_api->getFluxIliasRestObjectConfigLink(
             $ref_id
         );
     }
@@ -47,7 +75,7 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
 
     public function getFluxIliasRestObjectWebProxyLink(int $ref_id) : string
     {
-        return $this->ilias_api->getFluxIliasRestObjectWebProxyLink(
+        return static::$ilias_api->getFluxIliasRestObjectWebProxyLink(
             $ref_id
         );
     }
@@ -91,13 +119,5 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
     protected function uninstallCustom() : void
     {
 
-    }
-
-
-    private function initPlugin() : void
-    {
-        require_once __DIR__ . "/../autoload.php";
-
-        $this->ilias_api = IliasApi::new();
     }
 }
