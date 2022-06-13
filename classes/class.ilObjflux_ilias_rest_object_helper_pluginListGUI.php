@@ -2,6 +2,9 @@
 
 use FluxIliasRestApi\Libs\FluxIliasApi\Channel\Object\LegacyDefaultInternalObjectType;
 
+/**
+ * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
+ */
 class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginListGUI
 {
 
@@ -9,7 +12,7 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
     {
         switch ($a_cmd) {
             case "config":
-                return $this->plugin->getObjectConfigLink(
+                return $this->plugin->getFluxIliasRestObjectConfigLink(
                     $this->ref_id
                 );
 
@@ -17,7 +20,7 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
                 return $this->ctrl->getLinkTargetByClass([ilObjPluginDispatchGUI::class, $this->getGuiClass(), ilPermissionGUI::class], $a_cmd);
 
             case "web_proxy":
-                return $this->plugin->getObjectWebProxyLink(
+                return $this->plugin->getFluxIliasRestObjectWebProxyLink(
                     $this->ref_id
                 );
 

@@ -37,17 +37,17 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
     }
 
 
-    public function getObjectConfigLink(int $ref_id) : string
+    public function getFluxIliasRestObjectConfigLink(int $ref_id) : string
     {
-        return $this->ilias_api->getObjectConfigLink(
+        return $this->ilias_api->getFluxIliasRestObjectConfigLink(
             $ref_id
         );
     }
 
 
-    public function getObjectWebProxyLink(int $ref_id) : string
+    public function getFluxIliasRestObjectWebProxyLink(int $ref_id) : string
     {
-        return $this->ilias_api->getObjectWebProxyLink(
+        return $this->ilias_api->getFluxIliasRestObjectWebProxyLink(
             $ref_id
         );
     }
@@ -61,22 +61,22 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
 
     public function txt(string $a_var) : string
     {
-        $id = LegacyDefaultInternalObjectType::XFRH()->value;
+        $type = LegacyDefaultInternalObjectType::XFRH()->value;
 
         $txts = (object) [
-            "obj_" . $id                      => "flux ilias rest object",
-            "obj_" . $id . "_duplicate"       => "Copy flux ilias rest object",
-            "objs_" . $id                     => "flux ilias rest objects",
-            "objs_" . $id . "_duplicate"      => "Copy flux ilias rest objects",
-            "rbac_create_" . $id              => "Create flux ilias rest object",
-            "rep_robj_" . $id . "_obj_" . $id => "flux ilias rest object",
-            $id . "_add"                      => "Add",
-            $id . "_delete"                   => "Delete",
-            $id . "_edit_permission"          => "Edit permission",
-            $id . "_new"                      => "Create flux ilias rest object",
-            $id . "_read"                     => "Read",
-            $id . "_visible"                  => "visible",
-            $id . "_write"                    => "Edit"
+            "obj_" . $type                        => "flux-ilias-rest-object",
+            "obj_" . $type . "_duplicate"         => "Copy flux-ilias-rest-object",
+            "objs_" . $type                       => "flux-ilias-rest-objects",
+            "objs_" . $type . "_duplicate"        => "Copy flux-ilias-rest-objects",
+            "rbac_create_" . $type                => "Create flux-ilias-rest-object",
+            "rep_robj_" . $type . "_obj_" . $type => "flux-ilias-rest-object",
+            $type . "_add"                        => "Add",
+            $type . "_delete"                     => "Delete",
+            $type . "_edit_permission"            => "Edit permission",
+            $type . "_new"                        => "Create flux-ilias-rest-object",
+            $type . "_read"                       => "Read",
+            $type . "_visible"                    => "visible",
+            $type . "_write"                      => "Edit"
         ];
 
         $txt = $txts->{$a_var} ?? null;

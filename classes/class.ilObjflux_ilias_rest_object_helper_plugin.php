@@ -2,6 +2,9 @@
 
 use FluxIliasRestApi\Libs\FluxIliasApi\Channel\Object\LegacyDefaultInternalObjectType;
 
+/**
+ * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
+ */
 class ilObjflux_ilias_rest_object_helper_plugin extends ilObjectPlugin
 {
 
