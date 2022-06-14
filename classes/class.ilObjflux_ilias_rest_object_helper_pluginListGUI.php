@@ -12,17 +12,20 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
     {
         switch ($a_cmd) {
             case "config":
-                return $this->plugin->getFluxIliasRestObjectConfigLink(
-                    $this->ref_id
-                );
+                return $this->plugin::getIliasApi()
+                    ->getFluxIliasRestObjectConfigLink(
+                        $this->ref_id
+                    );
 
             case "perm":
                 return $this->ctrl->getLinkTargetByClass([ilObjPluginDispatchGUI::class, $this->getGuiClass(), ilPermissionGUI::class], $a_cmd);
 
             case "web_proxy":
-                return $this->plugin->getFluxIliasRestObjectWebProxyLink(
-                    $this->ref_id
-                );
+                return $this->plugin::getIliasApi()
+                    ->getFluxIliasRestObjectWebProxyLink(
+                        $this->ref_id,
+                        $this->obj_id
+                    );
 
             default:
                 return parent::getCommandLink($a_cmd);
@@ -84,6 +87,6 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
 
     public function initType() : void
     {
-        $this->setType(LegacyDefaultInternalObjectType::XFRH()->value);
+        $this->setType(LegacyDefaultInternalObjectType::XFRO()->value);
     }
 }
