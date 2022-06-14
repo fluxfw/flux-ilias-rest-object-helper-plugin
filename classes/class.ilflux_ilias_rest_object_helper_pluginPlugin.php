@@ -6,7 +6,7 @@ use FluxIliasRestApi\Libs\FluxIliasApi\Channel\Object\LegacyDefaultInternalObjec
 class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlugin
 {
 
-    public static function _getIcon(/*string*/ $a_type, /*string*/ $a_size, /*?int*/ $a_obj_id = null) : string
+    public static function _getIcon(/*string*/ $a_type, /*?string*/ $a_size = null, /*?int*/ $a_obj_id = null) : string
     {
         return static::getIliasApi()
             ->getFluxIliasRestObjectWebIconUrl(
