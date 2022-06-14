@@ -16,6 +16,18 @@ use FluxIliasRestApi\Libs\FluxIliasApi\Channel\Object\LegacyDefaultInternalObjec
 class ilObjflux_ilias_rest_object_helper_pluginGUI extends ilObjectPluginGUI
 {
 
+    public static function _goto(/*int*/ $a_target) : void
+    {
+        global $DIC;
+
+        $DIC->ctrl()->redirectToURL(ilflux_ilias_rest_object_helper_pluginPlugin::getIliasApi()
+            ->getFluxIliasRestObjectWebProxyLink(
+                $a_target[0],
+                ilObject::_lookupObjId($a_target[0])
+            ));
+    }
+
+
     public function getAfterCreationCmd() : string
     {
         return "";
@@ -30,15 +42,17 @@ class ilObjflux_ilias_rest_object_helper_pluginGUI extends ilObjectPluginGUI
 
     public function getType() : string
     {
-        return LegacyDefaultInternalObjectType::XFRH()->value;
+        return LegacyDefaultInternalObjectType::XFRO()->value;
     }
 
 
     public function performCommand(/*string*/ $cmd) : void
     {
-        $this->ctrl->redirectToURL($this->plugin->getFluxIliasRestObjectWebProxyLink(
-            $this->ref_id
-        ));
+        $this->ctrl->redirectToURL($this->plugin::getIliasApi()
+            ->getFluxIliasRestObjectWebProxyLink(
+                $this->ref_id,
+                $this->obj_id
+            ));
     }
 
 

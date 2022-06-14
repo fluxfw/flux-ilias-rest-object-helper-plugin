@@ -16,14 +16,15 @@ class ilObjflux_ilias_rest_object_helper_plugin extends ilObjectPlugin
 
     protected function doDelete() : void
     {
-        $this->plugin->deleteObjectConfig(
-            $this->id
-        );
+        $this->plugin::getIliasApi()
+            ->deleteObjectConfig(
+                $this->id
+            );
     }
 
 
     protected function initType() : void
     {
-        $this->setType(LegacyDefaultInternalObjectType::XFRH()->value);
+        $this->setType(LegacyDefaultInternalObjectType::XFRO()->value);
     }
 }
