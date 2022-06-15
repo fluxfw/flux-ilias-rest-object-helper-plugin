@@ -1,7 +1,7 @@
 <?php
 
 use FluxIliasRestApi\Libs\FluxIliasApi\Adapter\Api\IliasApi;
-use FluxIliasRestApi\Libs\FluxIliasApi\Channel\Object\LegacyDefaultInternalObjectType;
+use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
 
 class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlugin
 {

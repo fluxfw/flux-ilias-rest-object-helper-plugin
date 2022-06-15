@@ -1,6 +1,6 @@
 <?php
 
-use FluxIliasRestApi\Libs\FluxIliasApi\Channel\Object\LegacyDefaultInternalObjectType;
+use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
 
 /**
  * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
