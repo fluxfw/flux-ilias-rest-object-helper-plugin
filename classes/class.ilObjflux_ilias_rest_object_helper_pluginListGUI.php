@@ -87,6 +87,6 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
 
     public function initType() : void
     {
-        $this->setType(DefaultInternalObjectType::XFRO->value);
+        $this->setType(DefaultInternalObjectType::XFRO()->value);
     }
 }
