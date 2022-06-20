@@ -25,6 +25,6 @@ class ilObjflux_ilias_rest_object_helper_plugin extends ilObjectPlugin
 
     protected function initType() : void
     {
-        $this->setType(DefaultInternalObjectType::XFRO->value);
+        $this->setType(DefaultInternalObjectType::XFRO()->value);
     }
 }
