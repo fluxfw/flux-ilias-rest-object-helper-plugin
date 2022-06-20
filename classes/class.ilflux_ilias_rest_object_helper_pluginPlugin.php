@@ -1,7 +1,7 @@
 <?php
 
 use FluxIliasRestApi\Libs\FluxIliasApi\Adapter\Api\IliasApi;
-use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\DefaultInternalObjectType;
 
 class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlugin
 {
@@ -37,7 +37,7 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
 
     public function txt(string $a_var) : string
     {
-        $type = LegacyDefaultInternalObjectType::XFRO()->value;
+        $type = DefaultInternalObjectType::XFRO->value;
         $type_title = static::getIliasApi()
             ->getFluxIliasRestObjectWebTypeTitle();
         $multiple_type_title = static::getIliasApi()
