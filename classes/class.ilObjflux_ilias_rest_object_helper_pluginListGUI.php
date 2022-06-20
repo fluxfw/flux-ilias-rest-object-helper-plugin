@@ -1,6 +1,6 @@
 <?php
 
-use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\LegacyDefaultInternalObjectType;
+use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\DefaultInternalObjectType;
 
 /**
  * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
@@ -87,6 +87,6 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
 
     public function initType() : void
     {
-        $this->setType(LegacyDefaultInternalObjectType::XFRO()->value);
+        $this->setType(DefaultInternalObjectType::XFRO->value);
     }
 }
