@@ -2,10 +2,12 @@ ARG FLUX_PHP_BACKPORT_IMAGE=docker-registry.fluxpublisher.ch/flux-php-backport
 
 FROM $FLUX_PHP_BACKPORT_IMAGE AS build
 
-COPY . /flux-ilias-rest-object-helper-plugin
+COPY . /build/flux-ilias-rest-object-helper-plugin
 
-RUN php-backport /flux-ilias-rest-object-helper-plugin FluxIliasRestApi\\Libs\\FluxLegacyEnum
-RUN sed -i "s/DefaultInternalObjectType::XFRO/DefaultInternalObjectType::XFRO()/" /flux-ilias-rest-object-helper-plugin/classes/*.php
+RUN php-backport /build/flux-ilias-rest-object-helper-plugin FluxIliasRestApi\\Libs\\FluxLegacyEnum
+RUN sed -i "s/DefaultInternalObjectType::XFRO/DefaultInternalObjectType::XFRO()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
+
+RUN (cd /build && tar -czf flux-ilias-rest-object-helper-plugin.tar.gz flux-ilias-rest-object-helper-plugin)
 
 FROM scratch
 
@@ -13,7 +15,7 @@ LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-r
 LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
 LABEL flux-docker-registry-rest-api-build-path="/flux-ilias-rest-object-helper-plugin"
 
-COPY --from=build /flux-ilias-rest-object-helper-plugin /flux-ilias-rest-object-helper-plugin
+COPY --from=build /build /
 
 ARG COMMIT_SHA
 LABEL org.opencontainers.image.revision="$COMMIT_SHA"
