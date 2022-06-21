@@ -37,7 +37,7 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
 
     public function txt(string $a_var) : string
     {
-        $type = DefaultInternalObjectType::XFRO()->value;
+        $type = DefaultInternalObjectType::XFRO->value;
         $type_title = static::getIliasApi()
             ->getFluxIliasRestObjectWebTypeTitle();
         $multiple_type_title = static::getIliasApi()

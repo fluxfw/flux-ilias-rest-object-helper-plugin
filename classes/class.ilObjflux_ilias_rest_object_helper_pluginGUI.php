@@ -42,7 +42,7 @@ class ilObjflux_ilias_rest_object_helper_pluginGUI extends ilObjectPluginGUI
 
     public function getType() : string
     {
-        return DefaultInternalObjectType::XFRO()->value;
+        return DefaultInternalObjectType::XFRO->value;
     }
 
 
