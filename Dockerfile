@@ -5,6 +5,7 @@ FROM $FLUX_PHP_BACKPORT_IMAGE AS build
 COPY . /flux-ilias-rest-object-helper-plugin
 
 RUN php-backport /flux-ilias-rest-object-helper-plugin FluxIliasRestApi\\Libs\\FluxLegacyEnum
+RUN sed -i "s/DefaultInternalObjectType::XFRO/DefaultInternalObjectType::XFRO()/" /flux-ilias-rest-object-helper-plugin/classes/*.php
 
 FROM scratch
 
