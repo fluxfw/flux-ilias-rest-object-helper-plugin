@@ -52,11 +52,11 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
             "rep_robj_" . $type . "_obj_" . $type => $type_title,
             $type . "_add"                        => "Add",
             $type . "_delete"                     => "Delete",
-            $type . "_edit_permission"            => "Edit permission",
+            $type . "_edit_permission"            => "Change permissions",
             $type . "_new"                        => "Create " . $type_title,
             $type . "_read"                       => "Read",
-            $type . "_visible"                    => "visible",
-            $type . "_write"                      => "Edit"
+            $type . "_visible"                    => "Visible",
+            $type . "_write"                      => "Edit settings"
         ];
 
         $txt = $txts->{$a_var} ?? null;

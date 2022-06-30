@@ -1,6 +1,7 @@
 <?php
 
 use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\DefaultInternalObjectType;
+use FluxIliasRestApi\Libs\FluxIliasApi\Service\Permission\DefaultInternalPermission;
 
 /**
  * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
@@ -67,17 +68,17 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
 
         return [
             [
-                "permission" => "read",
+                "permission" => DefaultInternalPermission::READ,
                 "cmd"        => "web_proxy",
                 "default"    => true
             ],
             [
-                "permission" => "write",
+                "permission" => DefaultInternalPermission::WRITE,
                 "cmd"        => "config",
                 "txt"        => "Config"
             ],
             [
-                "permission" => "edit_permission",
+                "permission" => DefaultInternalPermission::EDIT_PERMISSION,
                 "cmd"        => "perm",
                 "lang_var"   => "perm_settings"
             ]
