@@ -68,17 +68,17 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
 
         return [
             [
-                "permission" => DefaultInternalPermission::READ,
+                "permission" => DefaultInternalPermission::READ->value,
                 "cmd"        => "web_proxy",
                 "default"    => true
             ],
             [
-                "permission" => DefaultInternalPermission::WRITE,
+                "permission" => DefaultInternalPermission::WRITE->value,
                 "cmd"        => "config",
                 "txt"        => "Config"
             ],
             [
-                "permission" => DefaultInternalPermission::EDIT_PERMISSION,
+                "permission" => DefaultInternalPermission::EDIT_PERMISSION->value,
                 "cmd"        => "perm",
                 "lang_var"   => "perm_settings"
             ]
