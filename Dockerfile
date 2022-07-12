@@ -1,23 +1,15 @@
-ARG FLUX_PHP_BACKPORT_IMAGE=docker-registry.fluxpublisher.ch/flux-php-backport
+FROM php:cli-alpine AS build
 
-FROM $FLUX_PHP_BACKPORT_IMAGE:v2022-06-23-1 AS build
+RUN (mkdir -p /flux-php-backport && cd /flux-php-backport && wget -O - https://github.com/flux-eco/flux-php-backport/releases/download/v2022-07-12-1/flux-php-backport-v2022-07-12-1-build.tar.gz | tar -xz --strip-components=1)
 
 COPY . /build/flux-ilias-rest-object-helper-plugin
 
-RUN php-backport /build/flux-ilias-rest-object-helper-plugin FluxIliasRestApi\\Libs\\FluxLegacyEnum
+RUN /flux-php-backport/bin/php-backport.php /build/flux-ilias-rest-object-helper-plugin FluxIliasRestApi\\Libs\\FluxLegacyEnum
 RUN sed -i "s/DefaultInternalObjectType::XFRO/DefaultInternalObjectType::XFRO()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
 RUN sed -i "s/DefaultInternalPermission::READ/DefaultInternalPermission::READ()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
 RUN sed -i "s/DefaultInternalPermission::WRITE/DefaultInternalPermission::WRITE()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
 RUN sed -i "s/DefaultInternalPermission::EDIT_PERMISSION/DefaultInternalPermission::EDIT_PERMISSION()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
 
-RUN (cd /build && tar -czf flux-ilias-rest-object-helper-plugin.tar.gz flux-ilias-rest-object-helper-plugin)
-
 FROM scratch
 
-LABEL org.opencontainers.image.source="https://github.com/flux-caps/flux-ilias-rest-object-helper-plugin"
-LABEL maintainer="fluxlabs <support@fluxlabs.ch> (https://fluxlabs.ch)"
-
 COPY --from=build /build /
-
-ARG COMMIT_SHA
-LABEL org.opencontainers.image.revision="$COMMIT_SHA"
