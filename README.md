@@ -6,6 +6,14 @@ ILIAS Rest Object Helper Plugin
 
 ### flux-ilias-rest-object-helper-plugin
 
+#### In [flux-ilias-ilias-base](https://github.com/fluxfw/flux-ilias-ilias-base)
+
+```dockerfile
+RUN /flux-ilias-ilias-base/bin/download-flux-ilias-rest-object-helper-plugin.sh %tag%
+```
+
+#### Other
+
 ```dockerfile
 RUN (mkdir -p %web_root%/Customizing/global/plugins/Services/Repository/RepositoryObject/flux_ilias_rest_object_helper_plugin && cd %web_root%/Customizing/global/plugins/Services/Repository/RepositoryObject/flux_ilias_rest_object_helper_plugin && wget -O - https://github.com/fluxfw/flux-ilias-rest-object-helper-plugin/releases/download/%tag%/flux-ilias-rest-object-helper-plugin-%tag%-build.tar.gz | tar -xz --strip-components=1)
 ```
