@@ -1,25 +1,25 @@
 <?php
 
-use FluxIliasRestApi\Libs\FluxIliasApi\Adapter\Api\IliasApi;
-use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\DefaultInternalObjectType;
+use FluxIliasRestApi\Adapter\Api\IliasRestApi;
+use FluxIliasRestApi\Service\Object\DefaultInternalObjectType;
 
 class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlugin
 {
 
     public static function _getIcon(/*string*/ $a_type, /*?string*/ $a_size = null, /*?int*/ $a_obj_id = null) : string
     {
-        return static::getIliasApi()
+        return static::getIliasRestApi()
             ->getFluxIliasRestObjectWebIconUrl(
                 $a_obj_id ?: null
             );
     }
 
 
-    public static function getIliasApi() : IliasApi
+    public static function getIliasRestApi() : IliasRestApi
     {
         require_once __DIR__ . "/../autoload.php";
 
-        return ilflux_ilias_rest_helper_pluginPlugin::getIliasApi();
+        return ilflux_ilias_rest_helper_pluginPlugin::getIliasRestApi();
     }
 
 
@@ -38,9 +38,9 @@ class ilflux_ilias_rest_object_helper_pluginPlugin extends ilRepositoryObjectPlu
     public function txt(string $a_var) : string
     {
         $type = DefaultInternalObjectType::XFRO->value;
-        $type_title = static::getIliasApi()
+        $type_title = static::getIliasRestApi()
             ->getFluxIliasRestObjectWebTypeTitle();
-        $multiple_type_title = static::getIliasApi()
+        $multiple_type_title = static::getIliasRestApi()
             ->getFluxIliasRestObjectWebMultipleTypeTitle();
 
         $txts = (object) [

@@ -1,6 +1,6 @@
 <?php
 
-use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\DefaultInternalObjectType;
+use FluxIliasRestApi\Service\Object\DefaultInternalObjectType;
 
 /**
  * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
@@ -16,7 +16,7 @@ class ilObjflux_ilias_rest_object_helper_plugin extends ilObjectPlugin
 
     protected function doDelete() : void
     {
-        $this->plugin::getIliasApi()
+        $this->plugin::getIliasRestApi()
             ->deleteObjectConfig(
                 $this->id
             );
