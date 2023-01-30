@@ -1,7 +1,7 @@
 <?php
 
-use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\DefaultInternalObjectType;
-use FluxIliasRestApi\Libs\FluxIliasApi\Service\Permission\DefaultInternalPermission;
+use FluxIliasRestApi\Service\Object\DefaultInternalObjectType;
+use FluxIliasRestApi\Service\Permission\DefaultInternalPermission;
 
 /**
  * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
@@ -13,7 +13,7 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
     {
         switch ($a_cmd) {
             case "config":
-                return $this->plugin::getIliasApi()
+                return $this->plugin::getIliasRestApi()
                     ->getFluxIliasRestObjectConfigLink(
                         $this->ref_id
                     );
@@ -22,7 +22,7 @@ class ilObjflux_ilias_rest_object_helper_pluginListGUI extends ilObjectPluginLis
                 return $this->ctrl->getLinkTargetByClass([ilObjPluginDispatchGUI::class, $this->getGuiClass(), ilPermissionGUI::class], $a_cmd);
 
             case "web_proxy":
-                return $this->plugin::getIliasApi()
+                return $this->plugin::getIliasRestApi()
                     ->getFluxIliasRestObjectWebProxyLink(
                         $this->ref_id,
                         $this->obj_id

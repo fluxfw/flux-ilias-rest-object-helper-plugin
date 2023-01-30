@@ -1,6 +1,6 @@
 <?php
 
-use FluxIliasRestApi\Libs\FluxIliasApi\Service\Object\DefaultInternalObjectType;
+use FluxIliasRestApi\Service\Object\DefaultInternalObjectType;
 
 /**
  * @property ilflux_ilias_rest_object_helper_pluginPlugin $plugin
@@ -20,7 +20,7 @@ class ilObjflux_ilias_rest_object_helper_pluginGUI extends ilObjectPluginGUI
     {
         global $DIC;
 
-        $DIC->ctrl()->redirectToURL(ilflux_ilias_rest_object_helper_pluginPlugin::getIliasApi()
+        $DIC->ctrl()->redirectToURL(ilflux_ilias_rest_object_helper_pluginPlugin::getIliasRestApi()
             ->getFluxIliasRestObjectWebProxyLink(
                 $a_target[0],
                 ilObject::_lookupObjId($a_target[0])
@@ -48,7 +48,7 @@ class ilObjflux_ilias_rest_object_helper_pluginGUI extends ilObjectPluginGUI
 
     public function performCommand(/*string*/ $cmd) : void
     {
-        $this->ctrl->redirectToURL($this->plugin::getIliasApi()
+        $this->ctrl->redirectToURL($this->plugin::getIliasRestApi()
             ->getFluxIliasRestObjectWebProxyLink(
                 $this->ref_id,
                 $this->obj_id
