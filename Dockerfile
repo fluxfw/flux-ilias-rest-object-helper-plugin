@@ -1,14 +1,13 @@
 FROM php:8.2-cli-alpine AS build
 
-RUN (mkdir -p /flux-php-backport && cd /flux-php-backport && wget -O - https://github.com/fluxfw/flux-php-backport/archive/refs/tags/v2023-01-30-1.tar.gz | tar -xz --strip-components=1)
+COPY bin/install-libraries.sh /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin/bin/install-libraries.sh
+RUN /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin/bin/install-libraries.sh
 
-COPY . /build/flux-ilias-rest-object-helper-plugin
+COPY . /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin
 
-RUN /flux-php-backport/bin/php-backport.php /build/flux-ilias-rest-object-helper-plugin
-RUN sed -i "s/DefaultInternalObjectType::XFRO/DefaultInternalObjectType::XFRO()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
-RUN sed -i "s/DefaultInternalPermission::READ/DefaultInternalPermission::READ()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
-RUN sed -i "s/DefaultInternalPermission::WRITE/DefaultInternalPermission::WRITE()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
-RUN sed -i "s/DefaultInternalPermission::EDIT_PERMISSION/DefaultInternalPermission::EDIT_PERMISSION()/" /build/flux-ilias-rest-object-helper-plugin/classes/*.php
+RUN /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin/bin/php-backport.sh
+
+RUN cp -L -R /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin /build/flux-ilias-rest-object-helper-plugin && rm -rf /build/flux-ilias-rest-object-helper-plugin/bin && rm -rf /build/flux-ilias-rest-object-helper-plugin-build
 
 FROM scratch
 
