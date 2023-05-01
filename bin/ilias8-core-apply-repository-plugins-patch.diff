@@ -11,22 +11,3 @@ index b395a6b0ea..d547103806 100644
                      $this->$cmd();
                      return;
                  }
-diff --git a/Services/Repository/PluginSlot/class.ilRepositoryObjectPlugin.php b/Services/Repository/PluginSlot/class.ilRepositoryObjectPlugin.php
-index 3032b096f9..0f03ee339c 100644
---- a/Services/Repository/PluginSlot/class.ilRepositoryObjectPlugin.php
-+++ b/Services/Repository/PluginSlot/class.ilRepositoryObjectPlugin.php
-@@ -26,12 +26,12 @@ abstract class ilRepositoryObjectPlugin extends ilPlugin
-     protected ilLanguage $lng;
-     protected ilDBInterface $db;
- 
--    public function __construct()
-+    /*public function __construct()
-     {
-         global $DIC;
-         $this->db = $DIC->database();
-         parent::__construct($this->db, $DIC["component.repository"], "xtst");
--    }
-+    }*/
- 
-     /**
-      * Only very little classes seem to care about this:
