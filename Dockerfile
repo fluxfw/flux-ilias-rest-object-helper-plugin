@@ -7,7 +7,7 @@ COPY . /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-ob
 
 RUN /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin/bin/php-backport.sh
 
-RUN cp -L -R /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin /build/flux-ilias-rest-object-helper-plugin && unlink /build/flux-ilias-rest-object-helper-plugin/bin/install-libraries.sh && unlink /build/flux-ilias-rest-object-helper-plugin/bin/php-backport.sh && rm -rf /build/flux-ilias-rest-object-helper-plugin-build
+RUN cp -L -R /build/flux-ilias-rest-object-helper-plugin-build/libs/flux-ilias-rest-object-helper-plugin /build/flux-ilias-rest-object-helper-plugin && rm -rf /build/flux-ilias-rest-object-helper-plugin/bin && rm -rf /build/flux-ilias-rest-object-helper-plugin-build
 
 RUN (cd /build && tar -czf build.tar.gz flux-ilias-rest-object-helper-plugin && rm -rf flux-ilias-rest-object-helper-plugin)
 

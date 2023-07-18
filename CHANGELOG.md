@@ -6,6 +6,12 @@ Changes:
 
 \-
 
+## v2023-07-18-1
+
+Changes:
+
+- Remove second ILIAS 8 patch fixed in core
+
 ## v2023-05-01-1
 
 Changes:

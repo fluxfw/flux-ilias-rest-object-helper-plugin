@@ -1,6 +1,4 @@
 *
-!bin/ilias8-core-apply-repository-plugins-patch.diff
-!bin/ilias8-core-apply-repository-plugins-patch.sh
 !bin/install-libraries.sh
 !bin/php-backport.sh
 !classes
